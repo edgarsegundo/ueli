@@ -32,3 +32,9 @@ google: Can't find Node.js binary with code 127: exec: node: not found . Make su
 https://stackoverflow.com/questions/37823194/cannot-find-runtime-node-on-path-visual-studio-code-and-node-js
 
 **NOTE**: Restart your computer
+
+
+
+## Web Search URLs
+
+https://translate.google.com/?sl=pt&tl=es&text={{query}}&op=translate
