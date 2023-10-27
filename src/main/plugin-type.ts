@@ -23,6 +23,7 @@ export enum PluginType {
     ControlPanel = "control-panel-plugin",
     Weather = "weather-plugin",
     LoremIpsum = "lorem-ipsum-plugin",
+    GrammarCheckerPlugin = "grammar-checker-plugin",
 
     // This is used for generic search results which do not have a specific plugin as a source
     None = "none",

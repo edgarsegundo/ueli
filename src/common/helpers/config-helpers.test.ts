@@ -193,6 +193,14 @@ const defaultUserConfigOptions: UserConfigOptions = {
         isEnabled: false,
         prefix: "lorem",
     },
+    grammarCheckerOptions: {
+        debounceDelay: 250,
+        enabled: false,
+        minSearchTermLength: 3,
+        prefix: "t?",
+        sourceLanguage: TranslationLanguage.German,
+        targetLanguage: TranslationLanguage.English,
+    },
 };
 
 describe(isValidJson.name, () => {

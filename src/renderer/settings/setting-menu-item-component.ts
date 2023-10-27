@@ -137,6 +137,8 @@ export const settingMenuItemComponent = Vue.extend({
                     return config.mdfindOptions.enabled;
                 case SettingOsSpecific.Uwp.replace(`${platform()}:`, ""):
                     return config.uwpSearchOptions.isEnabled;
+                case PluginSettings.GrammarChecker:
+                    return config.grammarCheckerOptions.enabled;
                 default:
                     return false;
             }
