@@ -66,6 +66,7 @@ import { getWebearchSuggestions } from "../executors/websearch-suggestion-resolv
 import { ChromiumBookmarkRepository } from "../plugins/browser-bookmarks-plugin/chromium-bookmark-repository";
 import { WeatherPlugin } from "../plugins/weather-plugin/weather-plugin";
 import { LoremIpsumPlugin } from "../plugins/lorem-ipsum-plugin/lorem-ipsum-plugin";
+import { GeneralHttpRequesterPlugin } from "../plugins/general-http-requester-plugin/general-http-requester-plugin";
 
 export function getProductionSearchEngine(
     operatingSystem: OperatingSystem,
@@ -199,8 +200,16 @@ export function getProductionSearchEngine(
         getWebearchSuggestions,
     );
 
+    const generalHttpRequesterPlugin = new GeneralHttpRequesterPlugin(
+        config.generalHttpRequesterOptions,
+        translationSet,
+        urlExecutor,
+        getWebearchSuggestions,
+    );
+
     const executionPlugins: ExecutionPlugin[] = [
         webSearchPlugin,
+        generalHttpRequesterPlugin,
         new FileBrowserExecutionPlugin(
             config.fileBrowserOptions,
             filePathValidator,

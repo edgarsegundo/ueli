@@ -127,6 +127,8 @@ export const settingMenuItemComponent = Vue.extend({
                     return config.loremIpsumOptions.isEnabled;
                 case PluginSettings.WebSearch:
                     return config.websearchOptions.isEnabled;
+                case PluginSettings.GeneralHttpRequester:
+                    return config.generalHttpRequesterOptions.isEnabled;
                 case PluginSettings.Workflow:
                     return config.workflowOptions.isEnabled;
                 case SettingOsSpecific.ControlPanel.replace(`${platform()}:`, ""):

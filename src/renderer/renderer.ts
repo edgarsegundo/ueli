@@ -62,6 +62,8 @@ import { browserBookmarkSettingsComponent } from "./settings/browser-bookmark-se
 import { controlPanelSettingsComponent } from "./settings/control-panel-settings-component";
 import { weatherSettingsComponent } from "./settings/weather-settings-component";
 import { loremIpsumSettingsComponent } from "./settings/lorem-ipsum-settings-component";
+import { generalHttpRequesterSettingsComponent } from "./settings/general-http-requester-settings-component";
+
 
 Vue.component("user-input", userInputComponent);
 Vue.component("search-results", searchResultsComponent);
@@ -109,6 +111,8 @@ Vue.component("browser-bookmark-settings", browserBookmarkSettingsComponent);
 Vue.component("control-panel-settings", controlPanelSettingsComponent);
 Vue.component("weather-settings", weatherSettingsComponent);
 Vue.component("lorem-ipsum-settings", loremIpsumSettingsComponent);
+Vue.component("general-http-requester-settings", generalHttpRequesterSettingsComponent);
+
 
 const initialConfig = new ElectronStoreConfigRepository(deepCopy(defaultUserConfigOptions)).getConfig();
 

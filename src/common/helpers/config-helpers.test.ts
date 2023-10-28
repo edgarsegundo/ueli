@@ -193,6 +193,10 @@ const defaultUserConfigOptions: UserConfigOptions = {
         isEnabled: false,
         prefix: "lorem",
     },
+    generalHttpRequesterOptions: {
+        isEnabled: false,
+        webSearchEngines: [],
+    },
 };
 
 describe(isValidJson.name, () => {
