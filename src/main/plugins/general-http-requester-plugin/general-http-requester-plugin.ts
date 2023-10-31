@@ -3,7 +3,7 @@ import { PluginType } from "../../plugin-type";
 import { UserConfigOptions } from "../../../common/config/user-config-options";
 import { GeneralHttpRequesterOptions } from "../../../common/config/general-http-requester-options";
 import { ExecutionPlugin } from "../../execution-plugin";
-import { WebSearchEngine } from "./web-search-engine";
+import { GeneralHttpRequest } from "./general-http-request";
 import { TranslationSet } from "../../../common/translation/translation-set";
 import { defaultWebSearchIcon } from "../../../common/icon/default-icons";
 import { isValidIcon } from "../../../common/icon/icon-helpers";
@@ -30,9 +30,9 @@ export class GeneralHttpRequesterPlugin implements ExecutionPlugin, AutoCompleti
 
     public getSearchResults(userInput: string, fallback?: boolean): Promise<SearchResultItem[]> {
         return new Promise((resolve, reject) => {
-            const webSearchEngines = this.config.webSearchEngines
-                .filter((webSearchEngine) => {
-                    return fallback ? webSearchEngine.isFallback : userInput.startsWith(webSearchEngine.prefix);
+            const generalHttpRequests = this.config.generalHttpRequests
+                .filter((generalHttpRequest) => {
+                    return fallback ? generalHttpRequest.isFallback : userInput.startsWith(generalHttpRequest.prefix);
                 })
                 .sort((a, b) => {
                     if (a.priority > b.priority) {
@@ -44,21 +44,21 @@ export class GeneralHttpRequesterPlugin implements ExecutionPlugin, AutoCompleti
                     return 0;
                 });
 
-            const suggestionWebSearchEngines = webSearchEngines.filter((webSearchEngine) => {
-                return webSearchEngine.suggestionUrl !== undefined;
+            const suggestionWebSearchEngines = generalHttpRequests.filter((generalHttpRequest) => {
+                return generalHttpRequest.suggestionUrl !== undefined;
             });
 
             this.getSuggestions(suggestionWebSearchEngines, userInput)
                 .then((suggestions) => {
                     const results: SearchResultItem[] = [];
 
-                    for (const webSearchEngine of webSearchEngines) {
+                    for (const generalHttpRequest of generalHttpRequests) {
                         results.push({
-                            description: this.buildDescriptionFromUserInput(webSearchEngine, userInput),
-                            executionArgument: this.buildExecutionArgumentFromUserInput(webSearchEngine, userInput),
+                            description: this.buildDescriptionFromUserInput(generalHttpRequest, userInput),
+                            executionArgument: this.buildExecutionArgumentFromUserInput(generalHttpRequest, userInput),
                             hideMainWindowAfterExecution: true,
-                            icon: isValidIcon(webSearchEngine.icon) ? webSearchEngine.icon : defaultWebSearchIcon,
-                            name: webSearchEngine.name,
+                            icon: isValidIcon(generalHttpRequest.icon) ? generalHttpRequest.icon : defaultWebSearchIcon,
+                            name: generalHttpRequest.name,
                             originPluginType: this.pluginType,
                             searchable: [],
                         });
@@ -85,7 +85,7 @@ export class GeneralHttpRequesterPlugin implements ExecutionPlugin, AutoCompleti
             ? RegExp.$1
             : searchResultItem.executionArgument;
 
-        const foundWebSearchEngine = this.config.webSearchEngines.find((websearchEngine) => {
+        const foundWebSearchEngine = this.config.generalHttpRequests.find((websearchEngine) => {
             return websearchEngine.url.includes(searchUrl);
         });
 
@@ -106,50 +106,50 @@ export class GeneralHttpRequesterPlugin implements ExecutionPlugin, AutoCompleti
         });
     }
 
-    private buildDescriptionFromUserInput(webSearchEngine: WebSearchEngine, userInput: string): string {
+    private buildDescriptionFromUserInput(generalHttpRequest: GeneralHttpRequest, userInput: string): string {
         return this.buildDescriptionFromSearchTerm(
-            webSearchEngine,
-            this.getSearchTerm(webSearchEngine, userInput, true),
+            generalHttpRequest,
+            this.getSearchTerm(generalHttpRequest, userInput, true),
         );
     }
 
-    private buildDescriptionFromSearchTerm(webSearchEngine: WebSearchEngine, searchTerm: string): string {
+    private buildDescriptionFromSearchTerm(generalHttpRequest: GeneralHttpRequest, searchTerm: string): string {
         return this.translationSet.websearchDescription
-            .replace("{{websearch_engine}}", webSearchEngine.name)
+            .replace("{{websearch_engine}}", generalHttpRequest.name)
             .replace("{{search_term}}", searchTerm);
     }
 
-    private getSearchTerm(webSearchEngine: WebSearchEngine, userInput: string, skipEncoding = false): string {
-        let searchTerm = userInput.replace(webSearchEngine.prefix, "");
+    private getSearchTerm(generalHttpRequest: GeneralHttpRequest, userInput: string, skipEncoding = false): string {
+        let searchTerm = userInput.replace(generalHttpRequest.prefix, "");
 
-        if (webSearchEngine.encodeSearchTerm && !skipEncoding) {
+        if (generalHttpRequest.encodeSearchTerm && !skipEncoding) {
             searchTerm = encodeURIComponent(searchTerm);
         }
 
         return searchTerm;
     }
 
-    private buildExecutionArgumentFromUserInput(webSearchEngine: WebSearchEngine, userInput: string): string {
+    private buildExecutionArgumentFromUserInput(generalHttpRequest: GeneralHttpRequest, userInput: string): string {
         return this.buildExecutionArgumentFromSearchTerm(
-            webSearchEngine,
-            this.getSearchTerm(webSearchEngine, userInput),
+            generalHttpRequest,
+            this.getSearchTerm(generalHttpRequest, userInput),
         );
     }
 
-    private buildExecutionArgumentFromSearchTerm(webSearchEngine: WebSearchEngine, searchTerm: string): string {
-        return this.replaceQueryInUrl(searchTerm, webSearchEngine.url);
+    private buildExecutionArgumentFromSearchTerm(generalHttpRequest: GeneralHttpRequest, searchTerm: string): string {
+        return this.replaceQueryInUrl(searchTerm, generalHttpRequest.url);
     }
 
     private userInputMatches(userInput: string, fallback?: boolean): boolean {
-        return this.config.webSearchEngines.some((websearchEngine) => {
+        return this.config.generalHttpRequests.some((websearchEngine) => {
             return fallback ? websearchEngine.isFallback : userInput.startsWith(websearchEngine.prefix);
         });
     }
 
-    private getSuggestions(webSearchEngines: WebSearchEngine[], userInput: string): Promise<SearchResultItem[]> {
+    private getSuggestions(generalHttpRequests: GeneralHttpRequest[], userInput: string): Promise<SearchResultItem[]> {
         return new Promise((resolve, reject) => {
-            const promises = webSearchEngines.map((webSearchEngine) =>
-                this.getSuggestionsByWebSearchEngine(webSearchEngine, userInput),
+            const promises = generalHttpRequests.map((generalHttpRequest) =>
+                this.getSuggestionsByWebSearchEngine(generalHttpRequest, userInput),
             );
 
             Promise.all(promises)
@@ -167,7 +167,7 @@ export class GeneralHttpRequesterPlugin implements ExecutionPlugin, AutoCompleti
     }
 
     private getSuggestionsByWebSearchEngine(
-        websearchEngine: WebSearchEngine,
+        websearchEngine: GeneralHttpRequest,
         userInput: string,
     ): Promise<SearchResultItem[]> {
         const searchTerm = this.getSearchTerm(websearchEngine, userInput);

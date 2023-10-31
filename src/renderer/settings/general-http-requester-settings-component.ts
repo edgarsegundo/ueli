@@ -4,8 +4,8 @@ import { VueEventChannels } from "../vue-event-channels";
 import { PluginSettings } from "./plugin-settings";
 import { UserConfigOptions } from "../../common/config/user-config-options";
 import { defaultGeneralHttpRequesterOptions } from "../../common/config/general-http-requester-options";
-import { defaultNewWebSearchEngine } from "../../main/plugins/general-http-requester-plugin/web-search-helpers";
-import { WebSearchEngine } from "../../main/plugins/general-http-requester-plugin/web-search-engine";
+import { defaultNewGeneralHttpRequest } from "../../main/plugins/general-http-requester-plugin/general-http-requester-helpers";
+import { GeneralHttpRequest } from "../../main/plugins/general-http-requester-plugin/general-http-request";
 import { ModalEditMode } from "./modals/modal-edit-mode";
 import { defaultWebSearchIcon } from "../../common/icon/default-icons";
 import { TranslationSet } from "../../common/translation/translation-set";
@@ -21,20 +21,20 @@ export const generalHttpRequesterSettingsComponent = Vue.extend({
         };
     },
     methods: {
-        editWebsearchEngine(index: number) {
+        editGeneralHttpRequester(index: number) {
             const config: UserConfigOptions = this.config;
-            const webSearchEngine = config.generalHttpRequesterOptions.webSearchEngines[index];
+            const generalHttpRequest = config.generalHttpRequesterOptions.generalHttpRequests[index];
             vueEventDispatcher.$emit(
-                VueEventChannels.openWebSearchEditingModal,
-                deepCopy(webSearchEngine),
+                VueEventChannels.openGeneralHttpRequesterEditingModal,
+                deepCopy(generalHttpRequest),
                 ModalEditMode.Edit,
                 index,
             );
         },
-        onAddWebsearchEngineClick() {
+        onAddGeneralHttpRequesterClick() {
             vueEventDispatcher.$emit(
-                VueEventChannels.openWebSearchEditingModal,
-                deepCopy(defaultNewWebSearchEngine),
+                VueEventChannels.openGeneralHttpRequesterEditingModal,
+                deepCopy(defaultNewGeneralHttpRequest),
                 ModalEditMode.Add,
             );
         },
@@ -60,20 +60,20 @@ export const generalHttpRequesterSettingsComponent = Vue.extend({
         updateConfig() {
             vueEventDispatcher.$emit(VueEventChannels.configUpdated, this.config);
         },
-        addWebsearchEngine(websearchEngine: WebSearchEngine) {
+        addGeneralHttpRequest(generalHttpRequest: GeneralHttpRequest) {
             const config: UserConfigOptions = this.config;
-            config.generalHttpRequesterOptions.webSearchEngines.push(websearchEngine);
+            config.generalHttpRequesterOptions.generalHttpRequests.push(generalHttpRequest);
             this.updateConfig();
         },
-        updateWebsearchEngine(websearchEngine: WebSearchEngine, index: number) {
+        updateWebsearchEngine(generalHttpRequest: GeneralHttpRequest, index: number) {
             const config: UserConfigOptions = this.config;
-            config.generalHttpRequesterOptions.webSearchEngines[index] = deepCopy(websearchEngine);
+            config.generalHttpRequesterOptions.generalHttpRequests[index] = deepCopy(generalHttpRequest);
             this.config = deepCopy(config);
             this.updateConfig();
         },
         removeWebsearchEngine(index: number) {
             const config: UserConfigOptions = this.config;
-            config.generalHttpRequesterOptions.webSearchEngines.splice(index, 1);
+            config.generalHttpRequesterOptions.generalHttpRequests.splice(index, 1);
             this.updateConfig();
         },
     },
@@ -87,12 +87,12 @@ export const generalHttpRequesterSettingsComponent = Vue.extend({
         });
 
         vueEventDispatcher.$on(
-            VueEventChannels.websearchEngineEdited,
-            (websearchEngine: WebSearchEngine, editMode: ModalEditMode, saveIndex?: number) => {
+            VueEventChannels.generalHttpRequestEdited,
+            (generalHttpRequest: GeneralHttpRequest, editMode: ModalEditMode, saveIndex?: number) => {
                 if (editMode === ModalEditMode.Add) {
-                    this.addWebsearchEngine(websearchEngine);
+                    this.addGeneralHttpRequest(generalHttpRequest);
                 } else if (editMode === ModalEditMode.Edit) {
-                    this.updateWebsearchEngine(websearchEngine, saveIndex);
+                    this.updateWebsearchEngine(generalHttpRequest, saveIndex);
                 }
             },
         );
@@ -121,7 +121,7 @@ export const generalHttpRequesterSettingsComponent = Vue.extend({
                     </div>
                 </div>
                 <div class="table-container">
-                    <table v-if="config.generalHttpRequesterOptions.webSearchEngines.length > 0" class="table is-striped is-fullwidth">
+                    <table v-if="config.generalHttpRequesterOptions.generalHttpRequests.length > 0" class="table is-striped is-fullwidth">
                         <thead>
                             <tr>
                                 <th class="has-text-centered">{{ translations.edit }}</th>
@@ -137,9 +137,9 @@ export const generalHttpRequesterSettingsComponent = Vue.extend({
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(websearchEngine, index) in config.generalHttpRequesterOptions.webSearchEngines">
+                            <tr v-for="(generalHttpRequest, index) in config.generalHttpRequesterOptions.generalHttpRequests">
                                 <td class="has-text-centered">
-                                    <button class="button" @click="editWebsearchEngine(index)">
+                                    <button class="button" @click="editGeneralHttpRequester(index)">
                                         <span class="icon">
                                             <i class="fas fa-edit"></i>
                                         </span>
@@ -152,30 +152,30 @@ export const generalHttpRequesterSettingsComponent = Vue.extend({
                                         </span>
                                     </button>
                                 </td>
-                                <td>{{ websearchEngine.name }}</td>
-                                <td class="font-mono">{{ websearchEngine.prefix }}</td>
-                                <td>{{ websearchEngine.url }}</td>
-                                <td>{{ websearchEngine.suggestionUrl }}</td>
-                                <td class="has-text-centered"><icon :icon="websearchEngine.icon" :defaulticon="defaultWebSearchIcon"></icon></td>
-                                <td class="has-text-centered">{{ websearchEngine.priority }}</td>
-                                <td class="has-text-centered"><i v-if="websearchEngine.isFallback" class="fas fa-check"></i></td>
-                                <td class="has-text-centered"><i v-if="websearchEngine.encodeSearchTerm" class="fas fa-check"></i></td>
+                                <td>{{ generalHttpRequest.name }}</td>
+                                <td class="font-mono">{{ generalHttpRequest.prefix }}</td>
+                                <td>{{ generalHttpRequest.url }}</td>
+                                <td>{{ generalHttpRequest.suggestionUrl }}</td>
+                                <td class="has-text-centered"><icon :icon="generalHttpRequest.icon" :defaulticon="defaultWebSearchIcon"></icon></td>
+                                <td class="has-text-centered">{{ generalHttpRequest.priority }}</td>
+                                <td class="has-text-centered"><i v-if="generalHttpRequest.isFallback" class="fas fa-check"></i></td>
+                                <td class="has-text-centered"><i v-if="generalHttpRequest.encodeSearchTerm" class="fas fa-check"></i></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div>
-                    <button class="button is-success" @click="onAddWebsearchEngineClick">
+                    <button class="button is-success" @click="onAddGeneralHttpRequesterClick">
                         <span class="icon"><i class="fas fa-plus"></i></span>
                         <span>
-                            Add new websearch engine
+                            Add new general http requester
                         </span>
                     </button>
                 </div>
             </div>
 
         </div>
-        <websearch-editing-modal :translations="translations"></websearch-editing-modal>
+        <general-http-requester-editing-modal :translations="translations"></general-http-requester-editing-modal>
     </div>
     `,
 });

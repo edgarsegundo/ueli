@@ -1,6 +1,6 @@
 export enum Language {
-    Czech = "Česky",
     English = "English",
+    Czech = "Česky",
     Finnish = "Suomi",
     German = "Deutsch",
     Hindi = "हिन्दी",

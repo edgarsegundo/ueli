@@ -391,4 +391,18 @@ export const italianTranslationSet: TranslationSet = {
     loremIpsumCopyToClipboard: "Premi Invio per copiare negli appunti",
     loremIpsumSettingsDescription:
         "Questo plugin ti consente di copiare rapidamente il testo di esempio negli appunti.",
+
+    httpRequesterEditingModalTitleAdd: "Add general http request",
+    httpRequesterEditingModalTitleEdit: "Edit general http request",
+    httpRequesterName: "Name",
+    httpRequesterPrefix: "Prefix",
+    httpRequesterUrl: "URL",
+    httpRequesterIcon: "Icon",
+    httpRequesterPriority: "Priority",
+    httpRequesterIsFallback: "Fallback",
+    httpRequesterEncodeSearchTerm: "Encode search term",
+    httpRequesterInvalidWebsearchEngine: "Invalid web search engine",
+    httpRequesterDescription: `Search on {{websearch_engine}} for "{{search_term}}"`,
+    httpRequesterMethod: "Request method",
+    httpRequesterCopyToClipboard: "copy to clipboard the result of the request",
 };

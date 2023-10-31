@@ -63,7 +63,7 @@ import { controlPanelSettingsComponent } from "./settings/control-panel-settings
 import { weatherSettingsComponent } from "./settings/weather-settings-component";
 import { loremIpsumSettingsComponent } from "./settings/lorem-ipsum-settings-component";
 import { generalHttpRequesterSettingsComponent } from "./settings/general-http-requester-settings-component";
-
+import { generalHttpRequesterEditingModal } from "./settings/modals/general-http-requester-editing-modal-component";
 
 Vue.component("user-input", userInputComponent);
 Vue.component("search-results", searchResultsComponent);
@@ -112,6 +112,7 @@ Vue.component("control-panel-settings", controlPanelSettingsComponent);
 Vue.component("weather-settings", weatherSettingsComponent);
 Vue.component("lorem-ipsum-settings", loremIpsumSettingsComponent);
 Vue.component("general-http-requester-settings", generalHttpRequesterSettingsComponent);
+Vue.component("general-http-requester-editing-modal", generalHttpRequesterEditingModal);
 
 
 const initialConfig = new ElectronStoreConfigRepository(deepCopy(defaultUserConfigOptions)).getConfig();

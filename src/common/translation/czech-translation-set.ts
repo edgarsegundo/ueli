@@ -386,4 +386,18 @@ export const englishTranslationSet: TranslationSet = {
     loremIpsumPrefix: "Předpona",
     loremIpsumCopyToClipboard: "Stisknutím klávesy Enter zkopírujete do schránky",
     loremIpsumSettingsDescription: "Tento plugin vám umožní rychle zkopírovat ukázkový text do schránky.",
+
+    httpRequesterEditingModalTitleAdd: "Add general http request",
+    httpRequesterEditingModalTitleEdit: "Edit general http request",
+    httpRequesterName: "Name",
+    httpRequesterPrefix: "Prefix",
+    httpRequesterUrl: "URL",
+    httpRequesterIcon: "Icon",
+    httpRequesterPriority: "Priority",
+    httpRequesterIsFallback: "Fallback",
+    httpRequesterEncodeSearchTerm: "Encode search term",
+    httpRequesterInvalidWebsearchEngine: "Invalid web search engine",
+    httpRequesterDescription: `Search on {{websearch_engine}} for "{{search_term}}"`,
+    httpRequesterMethod: "Request method",
+    httpRequesterCopyToClipboard: "copy to clipboard the result of the request",
 };

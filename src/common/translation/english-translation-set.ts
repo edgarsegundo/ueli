@@ -388,4 +388,18 @@ export const englishTranslationSet: TranslationSet = {
     loremIpsumPrefix: "Prefix",
     loremIpsumCopyToClipboard: "Press enter to copy to clipboard",
     loremIpsumSettingsDescription: "This Plugin lets you quickly copy sample text to your clipboard.",
+
+    httpRequesterEditingModalTitleAdd: "Add general http request",
+    httpRequesterEditingModalTitleEdit: "Edit general http request",
+    httpRequesterName: "Name",
+    httpRequesterPrefix: "Prefix",
+    httpRequesterUrl: "URL",
+    httpRequesterIcon: "Icon",
+    httpRequesterPriority: "Priority",
+    httpRequesterIsFallback: "Fallback",
+    httpRequesterEncodeSearchTerm: "Encode search term",
+    httpRequesterInvalidWebsearchEngine: "Invalid web search engine",
+    httpRequesterDescription: `Search on {{websearch_engine}} for "{{search_term}}"`,
+    httpRequesterMethod: "Request method",
+    httpRequesterCopyToClipboard: "Copy to clipboard the result of the request",
 };

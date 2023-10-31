@@ -383,4 +383,18 @@ export const koreanTranslationSet: TranslationSet = {
     loremIpsumPrefix: "접두사",
     loremIpsumCopyToClipboard: "Enter를 눌러 계산 결과를 클립보드에 복사",
     loremIpsumSettingsDescription: "이 플러그인을 사용하면 클립보드에 샘플 텍스트를 빠르게 복사할 수 있습니다.",
+
+    httpRequesterEditingModalTitleAdd: "Add general http request",
+    httpRequesterEditingModalTitleEdit: "Edit general http request",
+    httpRequesterName: "Name",
+    httpRequesterPrefix: "Prefix",
+    httpRequesterUrl: "URL",
+    httpRequesterIcon: "Icon",
+    httpRequesterPriority: "Priority",
+    httpRequesterIsFallback: "Fallback",
+    httpRequesterEncodeSearchTerm: "Encode search term",
+    httpRequesterInvalidWebsearchEngine: "Invalid web search engine",
+    httpRequesterDescription: `Search on {{websearch_engine}} for "{{search_term}}"`,
+    httpRequesterMethod: "Request method",
+    httpRequesterCopyToClipboard: "copy to clipboard the result of the request",
 };

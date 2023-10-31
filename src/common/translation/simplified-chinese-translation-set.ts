@@ -379,4 +379,18 @@ export const simplifiedChineseTranslationSet: TranslationSet = {
     loremIpsumPrefix: "前缀",
     loremIpsumCopyToClipboard: "按 Enter 复制到剪贴板",
     loremIpsumSettingsDescription: "此插件可让您快速将示例文本复制到剪贴板。",
+
+    httpRequesterEditingModalTitleAdd: "Add general http request",
+    httpRequesterEditingModalTitleEdit: "Edit general http request",
+    httpRequesterName: "Name",
+    httpRequesterPrefix: "Prefix",
+    httpRequesterUrl: "URL",
+    httpRequesterIcon: "Icon",
+    httpRequesterPriority: "Priority",
+    httpRequesterIsFallback: "Fallback",
+    httpRequesterEncodeSearchTerm: "Encode search term",
+    httpRequesterInvalidWebsearchEngine: "Invalid web search engine",
+    httpRequesterDescription: `Search on {{websearch_engine}} for "{{search_term}}"`,
+    httpRequesterMethod: "Request method",
+    httpRequesterCopyToClipboard: "copy to clipboard the result of the request",
 };

@@ -195,7 +195,7 @@ const defaultUserConfigOptions: UserConfigOptions = {
     },
     generalHttpRequesterOptions: {
         isEnabled: false,
-        webSearchEngines: [],
+        generalHttpRequests: [],
     },
 };
 

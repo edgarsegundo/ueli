@@ -227,6 +227,7 @@ export interface TranslationSet {
     websearchEngines: string;
     websearchEditingModalTitleAdd: string;
     websearchEditingModalTitleEdit: string;
+
     websearchName: string;
     websearchPrefix: string;
     websearchUrl: string;
@@ -376,4 +377,18 @@ export interface TranslationSet {
     loremIpsumPrefix: string;
     loremIpsumCopyToClipboard: string;
     loremIpsumSettingsDescription: string;
+
+    httpRequesterEditingModalTitleAdd: string;
+    httpRequesterEditingModalTitleEdit: string;
+    httpRequesterName: string;
+    httpRequesterPrefix: string;
+    httpRequesterUrl: string;
+    httpRequesterIcon: string;
+    httpRequesterPriority: string;
+    httpRequesterIsFallback: string;
+    httpRequesterEncodeSearchTerm: string;
+    httpRequesterInvalidWebsearchEngine: string;
+    httpRequesterDescription: string;
+    httpRequesterMethod: string;
+    httpRequesterCopyToClipboard: string;
 }
