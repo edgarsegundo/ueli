@@ -1,6 +1,7 @@
 import Store = require("electron-store");
 import { ConfigRepository } from "./config-repository";
 import { UserConfigOptions } from "./user-config-options";
+// import { mergeUserConfigWithDefault } from "../helpers/config-helpers";
 import { mergeUserConfigWithDefault } from "../helpers/config-helpers";
 
 export class ElectronStoreConfigRepository implements ConfigRepository {

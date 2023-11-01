@@ -1,4 +1,4 @@
-import { Language } from "../translation/language";
+// import { Language } from "../translation/language";
 import { GlobalHotKey } from "../global-hot-key/global-hot-key";
 import { GlobalHotKeyKey } from "../global-hot-key/global-hot-key-key";
 import { GlobalHotKeyModifier } from "../global-hot-key/global-hot-key-modifier";
@@ -11,7 +11,7 @@ export interface GeneralOptions {
     hideMainWindowAfterExecution: boolean;
     hideMainWindowOnBlur: boolean;
     hotKey: GlobalHotKey;
-    language: Language;
+    // language: Language;
     logExecution: boolean;
     persistentUserInput: boolean;
     rememberWindowPosition: boolean;
@@ -34,7 +34,7 @@ export const defaultGeneralOptions: GeneralOptions = {
         modifier: GlobalHotKeyModifier.Alt,
         secondModifier: GlobalHotKeyModifier.None,
     },
-    language: Language.English,
+    // language: Language.English,
     logExecution: true,
     persistentUserInput: false,
     rememberWindowPosition: false,

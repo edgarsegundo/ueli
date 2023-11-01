@@ -1,11 +1,11 @@
-import { Shortcut } from "../../main/plugins/shortcuts-search-plugin/shortcut";
+// import { Shortcut } from "../../main/plugins/shortcuts-search-plugin/shortcut";
 
-export interface ShortcutOptions {
-    isEnabled: boolean;
-    shortcuts: Shortcut[];
-}
+// export interface ShortcutOptions {
+//     isEnabled: boolean;
+//     shortcuts: Shortcut[];
+// }
 
-export const defaultShortcutOptions: ShortcutOptions = {
-    isEnabled: false,
-    shortcuts: [],
-};
+// export const defaultShortcutOptions: ShortcutOptions = {
+//     isEnabled: false,
+//     shortcuts: [],
+// };
