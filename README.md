@@ -1,4 +1,4 @@
-# ueli tauri vue3
+# ueli + electron + vue3
 
 ## Genesis
 
