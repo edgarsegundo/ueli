@@ -1,4 +1,9 @@
-import Store = require("electron-store");
+// https://electron-react-boilerplate.js.org/docs/electron-store
+// https://github.com/sindresorhus/electron-store
+// import Store = require("electron-store");
+// https://www.vuemastery.com/blog/advantages-of-pinia-vs-vuex/
+// 
+import Store from "electron-store";
 import { ConfigRepository } from "./config-repository";
 import { UserConfigOptions } from "./user-config-options";
 import { mergeUserConfigWithDefault } from "../helpers/config-helpers";

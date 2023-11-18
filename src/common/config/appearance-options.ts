@@ -1,4 +1,4 @@
-import { platform } from "os";
+// import { platform } from "os";
 import { getCurrentOperatingSystem } from "../helpers/operating-system-helpers";
 import { OperatingSystem } from "../operating-system";
 
@@ -25,14 +25,18 @@ export interface AppearanceOptions {
     scrollbarBorderRadius: string;
 }
 
+function platform() {
+    return "darwin"
+}
+
 const defaultFontFamily =
     getCurrentOperatingSystem(platform()) === OperatingSystem.Windows
         ? `"Segoe UI", Roboto, "Segoe UI Emoji", "Segoe UI Symbol"`
         : `-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif, "Apple Color Emoji`;
+    
 
 export const defaultAppearanceOptions: AppearanceOptions = {
-    allowTransparentBackground: false,
-    fontFamily: defaultFontFamily,
+    fontFamily: "null",
     maxSearchResultsPerPage: 8,
     searchResultHeight: 50,
     showDescriptionOnAllSearchResults: true,
@@ -41,6 +45,7 @@ export const defaultAppearanceOptions: AppearanceOptions = {
     smoothScrolling: true,
     userInputHeight: 60,
     windowWidth: 600,
+    allowTransparentBackground: false,
     userInputBorderRadius: "0px",
     userInputFontSize: "24px",
     userInputFontWeight: "200",

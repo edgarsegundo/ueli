@@ -1,4 +1,4 @@
-import { atomOneDark } from "../../renderer/color-themes/color-themes";
+import { atomOneDark } from "../../common/color-themes/color-themes";
 
 export interface ColorThemeOptions {
     name: string;
